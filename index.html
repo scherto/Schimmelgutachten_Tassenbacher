@@ -23185,31 +23185,81 @@ const BAUSTEINE_GESAMT = [
 
 // ─── CHECKLISTE ───────────────────────────────────────────────────────────────
 const CHECKLISTE_ITEMS = [
+  // ── Vorbereitung ──
   { id: "c1",  gruppe: "Vorbereitung", text: "Auftragsbestätigung / Vollmacht vorhanden" },
-  { id: "c2",  gruppe: "Vorbereitung", text: "Messgeräte kalibriert und einsatzbereit" },
+  { id: "c2",  gruppe: "Vorbereitung", text: "Messgeräte kalibriert und einsatzbereit", hint: "Feuchtemessgerät (kapazitiv + Widerstand), Thermo-Hygrometer, IR-Thermometer / Wärmebildkamera, ggf. Endoskop" },
   { id: "c3",  gruppe: "Vorbereitung", text: "Formular / App bereit" },
-  { id: "c4",  gruppe: "Vorbereitung", text: "Schutzausrüstung (FFP2, Handschuhe) dabei" },
+  { id: "c4",  gruppe: "Vorbereitung", text: "Schutzausrüstung dabei", hint: "FFP2/FFP3-Maske, Einweghandschuhe – v. a. bei großflächigem Befall oder Öffnen von Verkleidungen" },
+  { id: "v5",  gruppe: "Vorbereitung", text: "Probenahme-Material dabei (falls Labor geplant)", hint: "Klebefilmpräparate, sterile Beutel, Skalpell – vorher mit Auftraggeber abklären" },
+  { id: "v6",  gruppe: "Vorbereitung", text: "Fotoausrüstung mit Maßstab + Taschenlampe", hint: "Streiflicht macht Oberflächenbefall und Feuchteränder sichtbar" },
+  { id: "v7",  gruppe: "Vorbereitung", text: "Datenlogger dabei (optional)", hint: "Für Langzeitmessung T/rF, wenn Ursache voraussichtlich strittig" },
+  { id: "v8",  gruppe: "Vorbereitung", text: "Objektunterlagen gesichtet", hint: "Pläne, Baujahr, Sanierungshistorie, frühere Gutachten" },
+
+  // ── Außenbereich ──
   { id: "c5",  gruppe: "Außenbereich", text: "Außenwände auf Risse / Feuchteflecken geprüft" },
-  { id: "c6",  gruppe: "Außenbereich", text: "Sockelbereich / Geländeanschluss begutachtet" },
-  { id: "c7",  gruppe: "Außenbereich", text: "Dachuntersicht / Traufe geprüft" },
-  { id: "c8",  gruppe: "Außenbereich", text: "Fenster- und Türanschlüsse begutachtet" },
-  { id: "c9",  gruppe: "Innenbereich", text: "Alle Räume begehbar / zugänglich" },
-  { id: "c10", gruppe: "Innenbereich", text: "Möbel / Einrichtung auf Schimmel geprüft" },
-  { id: "c11", gruppe: "Innenbereich", text: "Wand-/Deckenanschlüsse inspiziert" },
-  { id: "c12", gruppe: "Innenbereich", text: "Fensterlaibungen geprüft" },
-  { id: "c13", gruppe: "Innenbereich", text: "Hinter Möbeln / in Ecken gecheckt" },
+  { id: "c6",  gruppe: "Außenbereich", text: "Sockelbereich / Geländeanschluss begutachtet", hint: "Spritzwasserzone, Sockelabdichtung, Terrainhöhe, Drainage" },
+  { id: "c7",  gruppe: "Außenbereich", text: "Dach / Traufe / Entwässerung geprüft", hint: "Verstopfte Rinnen, defekte Fallrohre, Durchfeuchtung der Untersicht" },
+  { id: "c8",  gruppe: "Außenbereich", text: "Fenster- und Türanschlüsse außen begutachtet" },
+  { id: "a9",  gruppe: "Außenbereich", text: "Wetterseite / Verschattung / Bewuchs notiert", hint: "Schlagregenbeanspruchung, dauerfeuchte Fassadenbereiche" },
+  { id: "a10", gruppe: "Außenbereich", text: "Balkon / Terrasse / Flachdach über Schadensbereich geprüft" },
+
+  // ── Schadensbild ──
+  { id: "s1",  gruppe: "Schadensbild", text: "Lage und Ausdehnung erfasst (Fläche in cm² / m²)", hint: "Flächenangabe ist Basis für Kategorisierung nach Schimmelleitfaden" },
+  { id: "s2",  gruppe: "Schadensbild", text: "Wuchsbild, Farbe, Oberflächen- vs. Tiefenbefall beurteilt" },
+  { id: "s3",  gruppe: "Schadensbild", text: "Tapete / Putz auf Hinterwanderung geprüft" },
+  { id: "c13", gruppe: "Schadensbild", text: "Hinter Möbeln, in Außenwandecken, Sockelleisten gecheckt" },
+  { id: "c12", gruppe: "Schadensbild", text: "Fensterlaibungen und Anschlussfugen geprüft" },
+  { id: "c11", gruppe: "Schadensbild", text: "Wand- / Deckenanschlüsse inspiziert" },
+  { id: "c10", gruppe: "Schadensbild", text: "Möbel / Einrichtung auf Befall geprüft" },
+  { id: "s4",  gruppe: "Schadensbild", text: "Feuchteprofil: Rastermessung um den Befall", hint: "Gradient von unten nach oben = aufsteigende Feuchte; punktuell = eher Leckage" },
+
+  // ── Ursache: Kondensat / Wärmebrücke ──
+  { id: "k1",  gruppe: "Ursache: Kondensat / Wärmebrücke", text: "Oberflächentemperaturen an Kaltstellen gemessen", hint: "fRsi überschlagen – kritisch bei fRsi < 0,71 (ÖNORM B 8110-2)" },
+  { id: "k2",  gruppe: "Ursache: Kondensat / Wärmebrücke", text: "Wärmebrücken lokalisiert (IR / Wärmebild)" },
+  { id: "k3",  gruppe: "Ursache: Kondensat / Wärmebrücke", text: "Möblierung an Außenwänden dokumentiert", hint: "Abstand Möbel–Wand, Hinterlüftung" },
+  { id: "k4",  gruppe: "Ursache: Kondensat / Wärmebrücke", text: "Lüftungsverhalten erfragt", hint: "Häufigkeit, Stoß- vs. Kipplüftung, Lüftungsanlage vorhanden?" },
+  { id: "k5",  gruppe: "Ursache: Kondensat / Wärmebrücke", text: "Feuchtequellen erfragt", hint: "Wäschetrocknen, Kochen, Personenbelegung, Pflanzen, Aquarium" },
+  { id: "k6",  gruppe: "Ursache: Kondensat / Wärmebrücke", text: "Heizverhalten erfragt", hint: "Raumtemperaturen auch nachts, unbeheizte / abgesenkte Räume" },
+
+  // ── Ursache: Leckage / Wasserschaden ──
+  { id: "l1",  gruppe: "Ursache: Leckage / Wasserschaden", text: "Leitungsführung geprüft", hint: "Bad / Küche angrenzend oder darüber?" },
+  { id: "l2",  gruppe: "Ursache: Leckage / Wasserschaden", text: "Silikon- und Anschlussfugen kontrolliert" },
+  { id: "l3",  gruppe: "Ursache: Leckage / Wasserschaden", text: "Frühere Wasserschäden erfragt" },
+  { id: "l4",  gruppe: "Ursache: Leckage / Wasserschaden", text: "Bauteile über dem Schaden geprüft", hint: "Flachdach, Balkon, Terrasse, Nassraum darüber" },
+
+  // ── Ursache: Feuchte von außen ──
+  { id: "f1",  gruppe: "Ursache: Feuchte von außen", text: "Aufsteigende Feuchte geprüft (Altbestand)", hint: "Horizontalsperre vorhanden? Feuchtegradient im Sockelbereich" },
+  { id: "f2",  gruppe: "Ursache: Feuchte von außen", text: "Fassadenzustand / Schlagregendichtheit beurteilt" },
+  { id: "f3",  gruppe: "Ursache: Feuchte von außen", text: "Erdberührte Bauteile / Kellerabdichtung beurteilt" },
+
+  // ── Messungen ──
   { id: "c14", gruppe: "Messungen", text: "Lufttemperatur gemessen (alle Räume)" },
   { id: "c15", gruppe: "Messungen", text: "Rel. Luftfeuchte gemessen (alle Räume)" },
+  { id: "c18", gruppe: "Messungen", text: "Außenklima erfasst (T, rF, Wetter)", hint: "Ohne Außenwerte keine saubere Taupunkt- / Kondensatbeurteilung" },
   { id: "c16", gruppe: "Messungen", text: "Oberflächentemp. an Kaltflächen gemessen" },
-  { id: "c17", gruppe: "Messungen", text: "Materialfeuchte gemessen (wenn nötig)" },
-  { id: "c18", gruppe: "Messungen", text: "Außentemperatur / Wetterbedingungen notiert" },
-  { id: "c19", gruppe: "Dokumentation", text: "Alle befallenen Flächen fotografiert" },
+  { id: "c17", gruppe: "Messungen", text: "Materialfeuchte gemessen (wenn nötig)", hint: "Kapazitiv zerstörungsfrei, Widerstand mit Elektroden bei Holz" },
+  { id: "m1",  gruppe: "Messungen", text: "Taupunkt / krit. Oberflächentemperatur bewertet", hint: "Rechner in der App (Raum-Detail) nutzen" },
+
+  // ── Anamnese / Befragung ──
+  { id: "n1",  gruppe: "Anamnese / Befragung", text: "Baujahr und Sanierungshistorie erhoben", hint: "Neue Fenster in alter Hülle = häufigste Kondensatursache!" },
+  { id: "n2",  gruppe: "Anamnese / Befragung", text: "Heizsystem und Lüftungssituation erhoben" },
+  { id: "n3",  gruppe: "Anamnese / Befragung", text: "Schadensverlauf erfragt", hint: "Seit wann? Saisonal (Winter)? Nach Umbau / Nutzerwechsel?" },
+  { id: "n4",  gruppe: "Anamnese / Befragung", text: "Raumnutzung und Belegung erhoben" },
+  { id: "n5",  gruppe: "Anamnese / Befragung", text: "Bei Mietobjekt: Streitkontext dokumentiert", hint: "Wer behauptet was – Nutzerverhalten vs. Baumangel neutral festhalten" },
+
+  // ── Dokumentation ──
+  { id: "c19", gruppe: "Dokumentation", text: "Alle befallenen Flächen fotografiert", hint: "Übersicht + Detail, Maßstab im Bild" },
   { id: "c20", gruppe: "Dokumentation", text: "Messwerte pro Raum dokumentiert" },
   { id: "c21", gruppe: "Dokumentation", text: "Grundriss / Skizze mit Markierungen erstellt" },
   { id: "c22", gruppe: "Dokumentation", text: "Befallsklasse je Raum festgelegt" },
   { id: "c23", gruppe: "Dokumentation", text: "Vermutete Ursache je Raum notiert" },
+  { id: "d1",  gruppe: "Dokumentation", text: "Probenahme dokumentiert (falls erfolgt)", hint: "Ort, Art (Klebefilm / Material / Luft), Labor" },
+
+  // ── Abschluss ──
   { id: "c24", gruppe: "Abschluss", text: "Auftraggeber über Befund informiert" },
-  { id: "c25", gruppe: "Abschluss", text: "Nächste Schritte besprochen" },
+  { id: "c25", gruppe: "Abschluss", text: "Nächste Schritte besprochen", hint: "Bei Befall > 0,5 m²: Hinweis auf fachgerechte Sanierung" },
+  { id: "z1",  gruppe: "Abschluss", text: "Sofortmaßnahmen / Nutzungshinweise gegeben", hint: "Lüften, Möbel abrücken, Befall nicht trocken abwischen" },
+  { id: "z2",  gruppe: "Abschluss", text: "Datenlogger platziert (falls Ursache unklar)", hint: "1–2 Wochen T/rF loggen – stärkstes Argument in der Nutzerverhalten-Frage" },
   { id: "c26", gruppe: "Abschluss", text: "Messprotokolle vollständig" },
 ];
 
@@ -23854,7 +23904,10 @@ function ChecklisteScreen({ checks, onChange, onBack }) {
                 },}
                   , checks[item.id] && React.createElement('span', { style: { color: C.white, fontSize: 14, fontWeight: 900 },}, "✓")
                 )
-                , React.createElement('span', { style: { fontSize: 14, color: checks[item.id] ? C.darkGray : "#222", textDecoration: checks[item.id] ? "line-through" : "none", lineHeight: 1.3 },}, item.text)
+                , React.createElement('div', { style: { flex: 1 },}
+                  , React.createElement('div', { style: { fontSize: 14, color: checks[item.id] ? C.darkGray : "#222", textDecoration: checks[item.id] ? "line-through" : "none", lineHeight: 1.3 },}, item.text)
+                  , item.hint && !checks[item.id] && React.createElement('div', { style: { fontSize: 11.5, color: C.darkGray, lineHeight: 1.35, marginTop: 2 },}, item.hint)
+                )
               )
             ))
           )
